@@ -1,5 +1,12 @@
 package main
 
+err := storage.InitPostgres(os.Getenv("POSTGRES_CONN"))
+if err != nil {
+  log.Fatal("Postgres init failed:", err)
+}
+
+storage.InitRedis(os.Getenv("REDIS_ADDR"))
+
 import (
 	"log"
 	"github.com/VadimMLG/MicroService/internal/handlers"
